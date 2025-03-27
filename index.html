@@ -1,16 +1,48 @@
-<!DOCTYPE html>
-<html>
 
+<!DOCTYPE html>
+<html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>replit</title>
+  <title>AG Grid Config Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+  <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine-dark.css">
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
-
-<body>
-  Hello world
+<body class="bg-gray-900 text-white p-4">
+  <div class="container mx-auto">
+    <h1 class="text-2xl mb-4">AG Grid Configuration Generator</h1>
+    
+    <div class="grid grid-cols-2 gap-4">
+      <div class="space-y-4">
+        <div>
+          <h2 class="text-xl mb-2">Column Configuration</h2>
+          <button id="addColumn" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded">Ajouter une colonne</button>
+        </div>
+        <div id="columnConfigs" class="space-y-2"></div>
+      </div>
+      
+      <div class="space-y-4">
+        <div>
+          <h2 class="text-xl mb-2">Preview</h2>
+          <div id="myGrid" class="ag-theme-alpine-dark h-[400px] w-full"></div>
+        </div>
+        
+        <div>
+          <h2 class="text-xl mb-2">Test Data JSON</h2>
+          <textarea id="testData" class="w-full h-32 bg-gray-800 text-white p-2 rounded" placeholder="Collez vos données JSON ici"></textarea>
+          <button id="updateData" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded mt-2">Mettre à jour les données</button>
+        </div>
+        
+        <div>
+          <h2 class="text-xl mb-2">Configuration JSON</h2>
+          <pre id="configOutput" class="bg-gray-800 p-4 rounded overflow-auto"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="script.js"></script>
 </body>
-
 </html>

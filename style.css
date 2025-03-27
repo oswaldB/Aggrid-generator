@@ -1,4 +1,15 @@
-html {
+
+html, body {
   height: 100%;
   width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.ag-theme-alpine-dark {
+  --ag-background-color: rgb(17 24 39);
+  --ag-header-background-color: rgb(31 41 55);
+  --ag-odd-row-background-color: rgb(17 24 39);
+  --ag-header-foreground-color: white;
+  --ag-foreground-color: white;
 }
