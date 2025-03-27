@@ -11,6 +11,8 @@ document.addEventListener('alpine:init', () => {
         filter: true,
         resizable: true
       },
+      suppressMovableColumns: false,
+      allowDragFromColumnsToolPanel: true,
       rowData: []
     },
 
