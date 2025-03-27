@@ -4,6 +4,8 @@ document.addEventListener('alpine:init', () => {
     columnDefs: [],
     availableFields: [],
     gridApi: null,
+    showDrawer: false,
+    importedConfig: '',
     gridOptions: {
       columnDefs: [],
       defaultColDef: {
@@ -22,12 +24,8 @@ document.addEventListener('alpine:init', () => {
       this.gridApi = this.gridOptions.api;
     },
 
-    handleConfigImport(event) {
-      this.importedConfig = event.target.value;
-    },
-
     applyConfig() {
-      if (this.importedConfig) {
+      if (this.importedConfig.trim()) {
         try {
           const config = JSON.parse(this.importedConfig);
           if (config.columnDefs) {
