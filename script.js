@@ -63,7 +63,7 @@ document.addEventListener('alpine:init', () => {
       ).join('');
 
       columnConfig.innerHTML = `
-        <input type="text" placeholder="Nom de la colonne" class="bg-gray-700 text-white p-2 rounded mb-2 w-full" data-column-field="headerName" value="${columnDef.headerName || ''}">
+        <input type="text" placeholder="Column name" class="bg-gray-700 text-white p-2 rounded mb-2 w-full" data-column-field="headerName" value="${columnDef.headerName || ''}">
         <select class="bg-gray-700 text-white p-2 rounded mb-2 w-full" data-column-field="field">
           <option value="">Select a field</option>
           ${fieldOptions}
@@ -114,7 +114,7 @@ document.addEventListener('alpine:init', () => {
       ).join('');
 
       columnConfig.innerHTML = `
-        <input type="text" placeholder="Nom de la colonne" class="bg-gray-700 text-white p-2 rounded mb-2 w-full" data-column-field="headerName">
+        <input type="text" placeholder="Column name" class="bg-gray-700 text-white p-2 rounded mb-2 w-full" data-column-field="headerName">
         <select class="bg-gray-700 text-white p-2 rounded mb-2 w-full" data-column-field="field">
           <option value="">Select a field</option>
           ${fieldOptions}
@@ -182,7 +182,7 @@ document.addEventListener('alpine:init', () => {
       document.querySelectorAll('[data-column-field="field"]').forEach(select => {
         const currentValue = select.value;
         select.innerHTML = `
-          <option value="">Sélectionner un champ</option>
+          <option value="">Select a field</option>
           ${fieldOptions}
         `;
         select.value = currentValue;
