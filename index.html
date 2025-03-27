@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,27 +14,26 @@
 <body class="bg-gray-900 text-white p-4" x-data="gridApp">
   <div class="container mx-auto">
     <h1 class="text-2xl mb-4">AG Grid Configuration Generator</h1>
-    
+
     <div class="grid grid-cols-2 gap-4">
       <div class="space-y-4">
+        <div>
+          <h2 class="text-xl mb-2">Test Data JSON</h2>
+          <textarea @change="updateTestData($event)" class="w-full h-32 bg-gray-800 text-white p-2 rounded" placeholder="Collez vos données JSON ici"></textarea>
+        </div>
         <div>
           <h2 class="text-xl mb-2">Column Configuration</h2>
           <button @click="addColumn" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded">Ajouter une colonne</button>
         </div>
         <div id="columnConfigs" class="space-y-2"></div>
       </div>
-      
+
       <div class="space-y-4">
         <div>
           <h2 class="text-xl mb-2">Preview</h2>
           <div id="myGrid" class="ag-theme-alpine-dark h-[400px] w-full"></div>
         </div>
-        
-        <div>
-          <h2 class="text-xl mb-2">Test Data JSON</h2>
-          <textarea @change="updateTestData($event)" class="w-full h-32 bg-gray-800 text-white p-2 rounded" placeholder="Collez vos données JSON ici"></textarea>
-        </div>
-        
+
         <div>
           <h2 class="text-xl mb-2">Configuration JSON</h2>
           <pre id="configOutput" class="bg-gray-800 p-4 rounded overflow-auto"></pre>
