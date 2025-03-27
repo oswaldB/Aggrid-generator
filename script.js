@@ -10,8 +10,8 @@ let gridOptions = {
   rowData: []
 };
 
-const grid = document.getElementById('myGrid');
-new agGrid.Grid(grid, gridOptions);
+const gridDiv = document.getElementById('myGrid');
+new agGridComm.Grid(gridDiv, gridOptions);
 
 document.getElementById('addColumn').addEventListener('click', () => {
   const columnConfig = document.createElement('div');
