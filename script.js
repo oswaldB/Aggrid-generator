@@ -1,4 +1,3 @@
-
 let columnDefs = [];
 let gridOptions = {
   columnDefs: columnDefs,
@@ -15,12 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const gridDiv = document.getElementById('myGrid');
   const grid = new agGrid.Grid(gridDiv, gridOptions);
   gridOptions = gridDiv.gridOptions;
+  const gridApi = grid.api; // Added gridApi variable
+
 });
 
 document.getElementById('addColumn').addEventListener('click', () => {
   const columnConfig = document.createElement('div');
   columnConfig.className = 'bg-gray-800 p-4 rounded';
-  
+
   const columnId = Date.now();
   columnConfig.innerHTML = `
     <input type="text" placeholder="Nom de la colonne" class="bg-gray-700 text-white p-2 rounded mb-2 w-full" data-column-field="headerName">
@@ -52,7 +53,7 @@ document.getElementById('addColumn').addEventListener('click', () => {
 document.getElementById('testData').addEventListener('change', () => {
   try {
     const data = JSON.parse(document.getElementById('testData').value);
-    gridOptions.api.setRowData(data);
+    gridApi.setRowData(data); // Updated to use gridApi
   } catch (e) {
     console.error('Invalid JSON data');
   }
@@ -61,7 +62,7 @@ document.getElementById('testData').addEventListener('change', () => {
 document.getElementById('updateData').addEventListener('click', () => {
   try {
     const data = JSON.parse(document.getElementById('testData').value);
-    gridOptions.api.setRowData(data);
+    gridApi.setRowData(data); // Updated to use gridApi
   } catch (e) {
     console.error('Invalid JSON data');
   }
@@ -69,7 +70,7 @@ document.getElementById('updateData').addEventListener('click', () => {
 
 function updateGridConfig() {
   const newColumnDefs = [];
-  
+
   document.querySelectorAll('#columnConfigs > div').forEach(config => {
     const columnDef = {};
     config.querySelectorAll('[data-column-field]').forEach(input => {
@@ -85,11 +86,11 @@ function updateGridConfig() {
   });
 
   gridOptions.api.setColumnDefs(newColumnDefs);
-  
+
   const configOutput = {
     columnDefs: newColumnDefs,
     defaultColDef: gridOptions.defaultColDef
   };
-  
+
   document.getElementById('configOutput').textContent = JSON.stringify(configOutput, null, 2);
 }
