@@ -11,7 +11,7 @@ let gridOptions = {
 };
 
 const gridDiv = document.getElementById('myGrid');
-new agGridComm.Grid(gridDiv, gridOptions);
+new agGrid.Grid(gridDiv, gridOptions);
 
 document.getElementById('addColumn').addEventListener('click', () => {
   const columnConfig = document.createElement('div');
