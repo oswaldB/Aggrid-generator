@@ -75,7 +75,17 @@ document.addEventListener('alpine:init', () => {
           <label class="flex items-center">
             <input type="checkbox" class="mr-2" data-column-field="filter" ${columnDef.filter !== false ? 'checked' : ''}> Filter
           </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2" data-column-field="editable" ${columnDef.editable ? 'checked' : ''}> Editable
+          </label>
+          <select class="bg-gray-700 text-white p-1 rounded" data-column-field="pinned">
+            <option value="">Non épinglé</option>
+            <option value="left" ${columnDef.pinned === 'left' ? 'selected' : ''}>Épinglé à gauche</option>
+            <option value="right" ${columnDef.pinned === 'right' ? 'selected' : ''}>Épinglé à droite</option>
+          </select>
         </div>
+        <input type="text" placeholder="Value Formatter (ex: €{value})" class="bg-gray-700 text-white p-2 rounded mb-2 w-full" data-column-field="valueFormatter" value="${columnDef.valueFormatter || ''}">
+        <input type="text" placeholder="Cell Class (ex: text-red-500)" class="bg-gray-700 text-white p-2 rounded mb-2 w-full" data-column-field="cellClass" value="${columnDef.cellClass || ''}">
         <input type="text" placeholder="Groupe (optionnel)" class="bg-gray-700 text-white p-2 rounded mb-2 w-full" data-column-field="columnGroupId" value="${columnDef.columnGroupId || ''}">
         <button class="bg-red-500 hover:bg-red-600 px-2 py-1 rounded mt-2 delete-column">Supprimer</button>
       `;
@@ -116,7 +126,17 @@ document.addEventListener('alpine:init', () => {
           <label class="flex items-center">
             <input type="checkbox" class="mr-2" data-column-field="filter" checked> Filter
           </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2" data-column-field="editable"> Editable
+          </label>
+          <select class="bg-gray-700 text-white p-1 rounded" data-column-field="pinned">
+            <option value="">Non épinglé</option>
+            <option value="left">Épinglé à gauche</option>
+            <option value="right">Épinglé à droite</option>
+          </select>
         </div>
+        <input type="text" placeholder="Value Formatter (ex: €{value})" class="bg-gray-700 text-white p-2 rounded mb-2 w-full" data-column-field="valueFormatter">
+        <input type="text" placeholder="Cell Class (ex: text-red-500)" class="bg-gray-700 text-white p-2 rounded mb-2 w-full" data-column-field="cellClass">
         <input type="text" placeholder="Groupe (optionnel)" class="bg-gray-700 text-white p-2 rounded mb-2 w-full" data-column-field="columnGroupId">
         <button class="bg-red-500 hover:bg-red-600 px-2 py-1 rounded mt-2 delete-column">Supprimer</button>
       `;
@@ -177,7 +197,10 @@ document.addEventListener('alpine:init', () => {
         const columnDef = {};
         config.querySelectorAll('[data-column-field]').forEach(input => {
           const field = input.dataset.columnField;
-          const value = input.type === 'checkbox' ? input.checked : input.value;
+          let value = input.type === 'checkbox' ? input.checked : input.value;
+          if (field === 'valueFormatter' && value) {
+            value = `params => \`${value.replace(/\{value\}/g, '${params.value}')}\``;
+          }
           if (value) {
             columnDef[field] = value;
           }
