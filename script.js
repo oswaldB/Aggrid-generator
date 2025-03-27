@@ -10,9 +10,11 @@ let gridOptions = {
   rowData: []
 };
 
+// Initialisation de la grille
 document.addEventListener('DOMContentLoaded', () => {
   const gridDiv = document.getElementById('myGrid');
-  gridOptions = agGrid.createGrid(gridDiv, gridOptions);
+  const grid = new agGrid.Grid(gridDiv, gridOptions);
+  gridOptions = gridDiv.gridOptions;
 });
 
 document.getElementById('addColumn').addEventListener('click', () => {
