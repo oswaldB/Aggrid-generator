@@ -1,5 +1,5 @@
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('alpine:init', () => {
   Alpine.data('gridApp', () => ({
     columnDefs: [],
     availableFields: [],
