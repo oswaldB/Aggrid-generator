@@ -1,4 +1,3 @@
-
 document.addEventListener('alpine:init', () => {
   Alpine.data('gridApp', () => ({
     columnDefs: [],
@@ -42,7 +41,7 @@ document.addEventListener('alpine:init', () => {
     recreateColumnConfigs(columnDefs) {
       const columnConfigs = document.getElementById('columnConfigs');
       columnConfigs.innerHTML = '';
-      
+
       columnDefs.forEach(def => {
         if (def.children) {
           def.children.forEach(child => {
@@ -57,7 +56,7 @@ document.addEventListener('alpine:init', () => {
     createColumnConfigElement(columnDef) {
       const columnConfig = document.createElement('div');
       columnConfig.className = 'bg-gray-800 p-4 rounded';
-      
+
       const fieldOptions = this.availableFields.map(field => 
         `<option value="${field}">${field}</option>`
       ).join('');
@@ -99,7 +98,17 @@ document.addEventListener('alpine:init', () => {
       });
 
       columnConfig.querySelectorAll('input, select').forEach(input => {
-        input.addEventListener('change', () => this.updateGridConfig());
+        if (input.dataset.columnField === 'field') {
+          input.addEventListener('change', (e) => {
+            const headerInput = columnConfig.querySelector('[data-column-field="headerName"]');
+            if (!headerInput.value) {
+              headerInput.value = e.target.value;
+            }
+            this.updateGridConfig();
+          });
+        } else {
+          input.addEventListener('change', () => this.updateGridConfig());
+        }
       });
 
       document.getElementById('columnConfigs').appendChild(columnConfig);
@@ -108,7 +117,7 @@ document.addEventListener('alpine:init', () => {
     addColumn() {
       const columnConfig = document.createElement('div');
       columnConfig.className = 'bg-gray-800 p-4 rounded';
-      
+
       const fieldOptions = this.availableFields.map(field => 
         `<option value="${field}">${field}</option>`
       ).join('');
@@ -147,7 +156,17 @@ document.addEventListener('alpine:init', () => {
       });
 
       columnConfig.querySelectorAll('input, select').forEach(input => {
-        input.addEventListener('change', () => this.updateGridConfig());
+        if (input.dataset.columnField === 'field') {
+          input.addEventListener('change', (e) => {
+            const headerInput = columnConfig.querySelector('[data-column-field="headerName"]');
+            if (!headerInput.value) {
+              headerInput.value = e.target.value;
+            }
+            this.updateGridConfig();
+          });
+        } else {
+          input.addEventListener('change', () => this.updateGridConfig());
+        }
       });
 
       document.getElementById('columnConfigs').appendChild(columnConfig);
