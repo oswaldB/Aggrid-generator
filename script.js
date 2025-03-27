@@ -9,13 +9,13 @@ let gridOptions = {
   rowData: []
 };
 
+let gridApi;
+
 // Initialisation de la grille
 document.addEventListener('DOMContentLoaded', () => {
   const gridDiv = document.getElementById('myGrid');
-  const grid = new agGrid.Grid(gridDiv, gridOptions);
-  gridOptions = gridDiv.gridOptions;
-  const gridApi = grid.api; // Added gridApi variable
-
+  new agGrid.Grid(gridDiv, gridOptions);
+  gridApi = gridOptions.api;
 });
 
 document.getElementById('addColumn').addEventListener('click', () => {
