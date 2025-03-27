@@ -21,14 +21,14 @@
       </div>
       <p class="text-gray-300 mb-4">Please paste your AG Grid configuration JSON below. The configuration will be loaded into the grid when you click the "Load Configuration" button.</p>
       <textarea x-model="importedConfig" class="w-full h-48 bg-gray-700 text-white p-2 rounded mb-4" placeholder="Paste your configuration here..."></textarea>
-      <button @click="applyConfig(); showDrawer = false" class="w-full bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded">Load Configuration</button>
+      <button @click="applyConfig(); showDrawer = false" class="w-full bg-red-500 hover:bg-red-600 px-4 py-2 rounded">Load Configuration</button>
     </div>
   </div>
 
   <div class="container mx-auto">
     <div class="flex justify-between items-center mb-4">
       <h1 class="text-2xl">AG Grid Configuration Generator</h1>
-      <button @click="showDrawer = true" class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded">Import Config</button>
+      <button @click="showDrawer = true" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded">Import Config</button>
     </div>
 
     <div class="grid grid-cols-2 gap-4">
