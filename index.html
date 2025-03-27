@@ -37,8 +37,8 @@
         <div>
           <h2 class="text-xl mb-2">Configuration JSON</h2>
           <div class="mb-2">
-            <button @click="importConfig" class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded">Importer une configuration</button>
-            <input type="file" id="configImport" class="hidden" @change="handleConfigImport" accept="application/json">
+            <textarea @change="handleConfigImport($event)" class="w-full h-32 bg-gray-800 text-white p-2 rounded mb-2" placeholder="Collez votre configuration JSON ici"></textarea>
+            <button @click="applyConfig" class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded">Appliquer la configuration</button>
           </div>
           <pre id="configOutput" class="bg-gray-800 p-4 rounded overflow-auto"></pre>
         </div>

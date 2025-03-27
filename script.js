@@ -22,27 +22,22 @@ document.addEventListener('alpine:init', () => {
       this.gridApi = this.gridOptions.api;
     },
 
-    importConfig() {
-      document.getElementById('configImport').click();
+    handleConfigImport(event) {
+      this.importedConfig = event.target.value;
     },
 
-    handleConfigImport(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          try {
-            const config = JSON.parse(e.target.result);
-            if (config.columnDefs) {
-              this.gridOptions.api.setColumnDefs(config.columnDefs);
-              this.recreateColumnConfigs(config.columnDefs);
-              document.getElementById('configOutput').textContent = JSON.stringify(config, null, 2);
-            }
-          } catch (err) {
-            console.error('Invalid configuration file');
+    applyConfig() {
+      if (this.importedConfig) {
+        try {
+          const config = JSON.parse(this.importedConfig);
+          if (config.columnDefs) {
+            this.gridOptions.api.setColumnDefs(config.columnDefs);
+            this.recreateColumnConfigs(config.columnDefs);
+            document.getElementById('configOutput').textContent = JSON.stringify(config, null, 2);
           }
-        };
-        reader.readAsText(file);
+        } catch (err) {
+          console.error('Invalid configuration JSON');
+        }
       }
     },
 
